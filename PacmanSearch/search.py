@@ -73,6 +73,27 @@ def tinyMazeSearch(problem):
     return  [s, s, w, s, w, w, s, w]
 
 def depthFirstSearch(problem):
+    print("Start:", problem.getStartState())
+    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
+    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
+    #deepest nodes first
+    """ Have we reached the goal? base case """
+    
+    """has goal been reached?
+     get start state 
+     explore states in order
+     keep track of the order
+     create stack to hold states
+     queue of actions
+     push the states on the stack
+     get next state to explore
+     save actions to get to that point
+     next state is current state
+     if not goal, continue 
+     """
+
+
+
     """
     Search the deepest nodes in the search tree first.
 
@@ -86,7 +107,7 @@ def depthFirstSearch(problem):
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
-    "*** YOUR CODE HERE ***"
+    
     util.raiseNotDefined()
 
 def breadthFirstSearch(problem):
@@ -95,11 +116,13 @@ def breadthFirstSearch(problem):
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
+    """ Ignore for this project """
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
 
 def nullHeuristic(state, problem=None):
+    """ Ignore for this project """
     """
     A heuristic function estimates the cost from the current state to the nearest
     goal in the provided SearchProblem.  This heuristic is trivial.
@@ -107,6 +130,7 @@ def nullHeuristic(state, problem=None):
     return 0
 
 def aStarSearch(problem, heuristic=nullHeuristic):
+    """Ignore for this project"""
     """Search the node that has the lowest combined cost and heuristic first."""
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
