@@ -83,7 +83,6 @@ def depthFirstSearch(problem):
      explore states in order
      keep track of the order
      create stack to hold states
-     queue of actions
      push the states on the stack
      get next state to explore
      save actions to get to that point
@@ -98,17 +97,16 @@ def depthFirstSearch(problem):
     if problem.isGoalState(currentNode):
         return []
     
-    
     stack.push((problem.getStartState(), pathFromStart))
     seen.append(problem.getStartState())
     
     #DFS
     while not stack.isEmpty():
          if problem.isGoalState(currentNode):
-               break
+            break
          nextNode, pathFromStart = stack.pop()
          if nextNode not in seen:
-           seen.append(nextNode)
+            seen.append(nextNode)
         
          sucessors = problem.getSuccessors(nextNode)
          for node in sucessors:  
