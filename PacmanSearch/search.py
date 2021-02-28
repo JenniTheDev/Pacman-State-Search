@@ -78,7 +78,6 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     #deepest nodes first
     """ Have we reached the goal? base case """
-    
     """has goal been reached?
      get start state 
      explore states in order
@@ -91,6 +90,35 @@ def depthFirstSearch(problem):
      next state is current state
      if not goal, continue 
      """
+    startState = problem.getStartState()
+    pathFromStart = []
+    stack = util.Stack()
+
+    if problem.isGoalState(startState):
+        return []
+    
+    startNode = Node(startState, None, None, 0)
+    stack.push(startNode)
+
+    #DFS
+    while not stack.isEmpty():
+        currentNode = stack.pop()
+        if currentNode not in seen:
+           seen.add(currentNode)
+           if problem.isGoalState(currentNode.state):
+               break
+           for successorState in problem.getSuccessors(currentNode.state):
+               successorNode = Node (successorState[0], currentNode, successorState[1],0)
+               stack.push(successorNode)
+
+    while currentNode.parentDirectory != None:
+         pathFromStart.append(currentNode.parentDirectory)
+         currentNode = currentNode.parent
+
+    pathFromStart.reverse()
+
+    return pathFromStart
+            
 
 
 
@@ -117,6 +145,7 @@ def breadthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
 
     '''
+    node = state tuple, parent tuple, parentDiretory & game direction, cost from start
     node with state problem.initial sate, path-cost = 0
         if goal, return solution
            seen queue with node as only element
@@ -129,8 +158,7 @@ def breadthFirstSearch(problem):
        
 
     '''
-
-
+    
 
 
 
