@@ -112,7 +112,28 @@ def depthFirstSearch(problem):
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
-    "*** YOUR CODE HERE ***"
+    print("Start:", problem.getStartState())
+    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
+    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
+
+    '''
+    node with state problem.initial sate, path-cost = 0
+        if goal, return solution
+           seen queue with node as only element
+            unseen nodes - empty
+                for each action in problem (state node) do
+                    child - child  (problem node action)
+                        if child is not seen or unseen
+                            if problem gaol test then return solution
+                             add child to see
+       
+
+    '''
+
+
+
+
+
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
