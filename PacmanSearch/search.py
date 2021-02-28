@@ -90,33 +90,37 @@ def depthFirstSearch(problem):
      next state is current state
      if not goal, continue 
      """
-    startState = problem.getStartState()
+    currentNode = problem.getStartState()
+    seen = []
     pathFromStart = []
     stack = util.Stack()
 
-    if problem.isGoalState(startState):
+    if problem.isGoalState(currentNode):
         return []
     
-    startNode = Node(startState, None, None, 0)
-    stack.push(startNode)
-
+    
+    stack.push((problem.getStartState(), pathFromStart))
+    seen.append(problem.getStartState())
+    
     #DFS
     while not stack.isEmpty():
-        currentNode = stack.pop()
-        if currentNode not in seen:
-           seen.add(currentNode)
-           if problem.isGoalState(currentNode.state):
+         if problem.isGoalState(currentNode):
                break
-           for successorState in problem.getSuccessors(currentNode.state):
-               successorNode = Node (successorState[0], currentNode, successorState[1],0)
-               stack.push(successorNode)
-
-    while currentNode.parentDirectory != None:
-         pathFromStart.append(currentNode.parentDirectory)
-         currentNode = currentNode.parent
-
-    pathFromStart.reverse()
-
+         nextNode, pathFromStart = stack.pop()
+         if nextNode not in seen:
+           seen.append(nextNode)
+        
+         sucessors = problem.getSuccessors(nextNode)
+         for node in sucessors:  
+             if not node[0] in seen:
+                 direction = node[1]
+                 stack.push((node[0], pathFromStart + [direction]))
+                 currentNode = node[0]
+                    #seen.append(node[0])
+                    #stack.push((node[1], pathFromStart + [node[1]]))
+                    #currentNode = node[0]
+              
+    pathFromStart.append(direction)
     return pathFromStart
             
 
