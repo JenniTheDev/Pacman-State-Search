@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>30d9e033-1ba8-450d-a89f-079d24adf6a9</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>pacman.py</StartupFile>
+    <StartupFile>packman.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -13,7 +13,7 @@
     <RootNamespace>PacmanSearch</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-l mediumMaze -p SearchAgent -a fn=bfs</CommandLineArguments>
+    <CommandLineArguments>-l bigMaze -z .5 -p SearchAgent</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterPath>
     </InterpreterPath>

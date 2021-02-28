@@ -147,49 +147,63 @@ def breadthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
 
       
-    #node with state problem.initial start state
+    ##node with state problem.initial start state
+    #startState = problem.getStartState()
+    ## hold visited nodes
+    #pathToTake = []
+    ##places it's been
+    #seen = []
+
+    #queue = util.Queue()
+    ##initialize start 
+    #queue.push = (problem.getStartState(), pathToTake)
+    #seen.append(problem.getStartState())
+
+    #while not queue.isEmpty():
+    #    currNode = queue.pop()
+    #    currState = currNode[0]
+    #    currPlan = currNode[1]
+    #    if problem.isGoalState(currState):
+    #        return list(currPlan)
+    #    if not currState in visited:
+    #        visited.add(currState)
+    #        paths = problem.getSuccessors(currState)
+    #        for path in paths:
+    #            newPlan = list(currPlan)
+    #            newPlan.append(successor)
+          
+    #            if not path[0] in visited:
+    #                queue.push(nextNode)
+    #   # if goal, return solution
+    #    #   seen queue with node as only element
+    #     #   unseen nodes - empty
+    #           # for each action in problem (state node) do
+    #              #  child - child  (problem node action)
+    #                #    if child is not seen or unseen
+    #                       # if problem goal test then return solution
+    #                         #add child to see
+     
     startState = problem.getStartState()
-    # hold visited nodes
-    pathToTake = []
-    #places it's been
-    seen = []
+    visited = set()
+    fringe = util.Queue()
+    fringe.push((startState, ()))
 
-    queue = util.Queue()
-    #initialize start 
-    queue.push = (problem.getStartState(), pathToTake)
-    seen.append(problem.getStartState())
-
-    while not queue.isEmpty():
-        next, pathToTake = queue.pop()
-        currentSpot = pathToTake[len(pathToTake)-1][0]
-
-        if problem.isGoalState(currentSpot):
-            break
-
-        if currentSpot not in seen:
-            seen.add(currentSpot)
-
-            for successor in problem.getSuccessors(currentSpot):
-                   if successor not in seen:    
-                       path = pathToTake[:]
-                       path.append(successor)
-                       queue.push(path)
-
-    return []
-       # if goal, return solution
-        #   seen queue with node as only element
-         #   unseen nodes - empty
-               # for each action in problem (state node) do
-                  #  child - child  (problem node action)
-                    #    if child is not seen or unseen
-                           # if problem goal test then return solution
-                             #add child to see
-       
-
-    
-
-
-
+    while not fringe.isEmpty():
+        currNode = fringe.pop()
+        currState = currNode[0]
+        currPlan = currNode[1]
+        if problem.isGoalState(currState):
+            return list(currPlan)
+        if not currState in visited:
+            visited.add(currState)
+            paths = problem.getSuccessors(currState)
+            for path in paths:
+                newPlan = list(currPlan)
+                newPlan.append(path[1])
+                nextNode = (path[0], tuple(newPlan))
+                if not path[0] in visited:
+                    fringe.push(nextNode)
+   
     util.raiseNotDefined()
 
 def uniformCostSearch(problem):
