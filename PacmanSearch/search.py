@@ -146,20 +146,46 @@ def breadthFirstSearch(problem):
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
 
-    '''
-    node = state tuple, parent tuple, parentDiretory & game direction, cost from start
-    node with state problem.initial sate, path-cost = 0
-        if goal, return solution
-           seen queue with node as only element
-            unseen nodes - empty
-                for each action in problem (state node) do
-                    child - child  (problem node action)
-                        if child is not seen or unseen
-                            if problem gaol test then return solution
-                             add child to see
+      
+    #node with state problem.initial start state
+    startState = problem.getStartState()
+    # hold visited nodes
+    pathToTake = []
+    #places it's been
+    seen = []
+
+    queue = util.Queue()
+    #initialize start 
+    queue.push = (problem.getStartState(), pathToTake)
+    seen.append(problem.getStartState())
+
+    while not queue.isEmpty():
+        next, pathToTake = queue.pop()
+        currentSpot = pathToTake[len(pathToTake)-1][0]
+
+        if problem.isGoalState(currentSpot):
+            break
+
+        if currentSpot not in seen:
+            seen.add(currentSpot)
+
+            for successor in problem.getSuccessors(currentSpot):
+                   if successor not in seen:    
+                       path = pathToTake[:]
+                       path.append(successor)
+                       queue.push(path)
+
+    return []
+       # if goal, return solution
+        #   seen queue with node as only element
+         #   unseen nodes - empty
+               # for each action in problem (state node) do
+                  #  child - child  (problem node action)
+                    #    if child is not seen or unseen
+                           # if problem goal test then return solution
+                             #add child to see
        
 
-    '''
     
 
 

@@ -13,7 +13,7 @@
     <RootNamespace>PacmanSearch</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-l mediumMaze -p SearchAgent</CommandLineArguments>
+    <CommandLineArguments>-l mediumMaze -p SearchAgent -a fn=bfs</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterPath>
     </InterpreterPath>
