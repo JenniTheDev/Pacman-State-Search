@@ -145,13 +145,9 @@ def depthFirstSearch(problem):
 
 def breadthFirstSearch(problem):
     """Search the shallowest nodes in the search tree first."""
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-
-       # if goal, return solution
+        # if goal, return solution
         #   seen queue with node as only element
-         #   unseen nodes - empty
+        #   unseen nodes - empty
                # for each action in problem (state node) do
                   #  child - child  (problem node action)
                     #    if child is not seen or unseen
@@ -196,9 +192,53 @@ def nullHeuristic(state, problem=None):
     return 0
 
 def aStarSearch(problem, heuristic=nullHeuristic):
-    """Ignore for this project"""
+    """Proj 2"""
+    # Open - set of nodes to be evaluated
+    
     """Search the node that has the lowest combined cost and heuristic first."""
-    "*** YOUR CODE HERE ***"
+    visited = []  # to keep list of visited nodes # closed - already evaluated
+    notVisited = util.PriorityQueue() # Open - set of nodes to be evaluated
+    notVisited.push([(problem.getStartState(), "Start", 0)], 0)
+    # loop
+    while not notVisited.isEmpty():
+    # current = node in Open with lowest f_cost
+        sPath = notVisited.pop()
+        s = sPath[-1]
+       
+       
+    # remove current from open
+    # add current to closed
+
+    # if current is the target node
+    # return
+
+    # foreach neighbour of the current node
+    # if neighbor is not traversable or neighbor is in closed
+    # skip to the next neighbor
+
+    # if new path to neighbor is shorter or neighbor is not in open
+    # set f_cost of neighbor (f cost is distance from start node + distance from end node)
+    # set parent of neighbor to current
+    # if neighbor is not in open
+    # add neighbor to open
+        if problem.isGoalState(s[0]):
+         
+            ansPath = []
+            for p in sPath:
+                ansPath.append(p[1])
+            return ansPath[1:]
+
+        if s[0] not in visited:
+            visited.append(s[0])
+
+            for child in problem.getSuccessors(s[0]):
+                if child[0] not in visited or notVisited:
+                    childPath = sPath + []
+                    childNew = (child[0], child[1], child[2] + s[2])
+                    childPath.append(childNew)
+                    notVisited.push(childPath, childNew[2] + + heuristic(child[0], problem))
+
+
     util.raiseNotDefined()
 
 

@@ -13,10 +13,11 @@
     <RootNamespace>PacmanSearch</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-l mediumMaze -p SearchAgent -a fn=bfs</CommandLineArguments>
+    <CommandLineArguments>-l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterPath>
     </InterpreterPath>
+    <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
