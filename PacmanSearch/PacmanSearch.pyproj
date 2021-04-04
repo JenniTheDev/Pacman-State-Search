@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>30d9e033-1ba8-450d-a89f-079d24adf6a9</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>submission_autograder.py</StartupFile>
+    <StartupFile>pacman.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>

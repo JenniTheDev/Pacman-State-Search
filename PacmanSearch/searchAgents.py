@@ -287,13 +287,13 @@ class CornersProblem(search.SearchProblem):
         self._expanded = 0 # DO NOT CHANGE; Number of search nodes expanded
         # Please add any code here which you would like to use
         # in initializing the problem
-        self.closed = []
-        self.open = []
-        for c in self.corners:
-            self.open.append(c)
+        #self.closed = []
+        #self.open = []
+        #for c in self.corners:
+        #    self.open.append(c)
 
         # maybe not needed
-        self.open = [0,0,0,0]
+        self.closed = [0,0,0,0]
 
     def getStartState(self):
         """
@@ -301,7 +301,7 @@ class CornersProblem(search.SearchProblem):
         space)
         """
         "*** My Code is this one line below ***"
-        return(self.startingPosition, tuple(self.open))
+        return(self.startingPosition, tuple(self.closed))
         util.raiseNotDefined()
 
     def isGoalState(self, state):
@@ -344,10 +344,10 @@ class CornersProblem(search.SearchProblem):
 
             if not self.walls[nextx][nexty]:
                 if(nextx,nexty) in self.corners:
-                    corners[self.corners.index((nextx,nexty))] =1
+                    corners[self.corners.index((nextx,nexty))] = 1
 
                     nextState = ((nextx, nexty), tuple(corners))
-                    cost =1
+                    cost = 1
                     successors.append((nextState,action,cost))
 
 
@@ -385,7 +385,16 @@ def cornersHeuristic(state, problem):
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
     "*** YOUR CODE HERE ***"
-    return 0 # Default to trivial solution
+    manhattan = []
+    xy1 = state[0]
+    for index, corner in enumerate(state[1]):
+        if corner == 0:
+            xy2 = corners[index]
+            manhattan.append((abs(xy1[0] - xy2[0]) + abs(xy1[1] - xy2[1])))
+            return max(manhattan)
+
+
+   # return 0 # Default to trivial solution
 
 class AStarCornersAgent(SearchAgent):
     "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"

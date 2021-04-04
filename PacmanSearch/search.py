@@ -175,7 +175,7 @@ def breadthFirstSearch(problem):
                 if not path[0] in visited:
                     queue.push(nextNode)
    
-    util.raiseNotDefined()
+   # util.raiseNotDefined()
 
 def uniformCostSearch(problem):
     """ Ignore for this project """
