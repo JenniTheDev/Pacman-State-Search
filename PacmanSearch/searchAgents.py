@@ -272,7 +272,7 @@ class CornersProblem(search.SearchProblem):
 
     You must select a suitable state space and successor function
     """
-     #TODO Proj 2 Do this part
+    # Project 2
     def __init__(self, startingGameState):
         """
         Stores the walls, pacman's starting position and corners.
@@ -336,13 +336,13 @@ class CornersProblem(search.SearchProblem):
             nextx, nexty = int(x+dx), int(y+dy)
 
             if not self.walls[nextx][nexty]:
-                next_pos = (nextx, nexty)
+                nextPosition = (nextx, nexty)
                 cost = 1
-                if next_pos in state[1]:
-                    next_corners = tuple([x for x in state[1] if x != next_pos])
-                    successors.append(((next_pos, next_corners), action, cost))
+                if nextPosition in state[1]:
+                    nextCorner = tuple([x for x in state[1] if x != nextPosition])
+                    successors.append(((nextPosition, nextCorner), action, cost))
                 else:
-                    successors.append(((next_pos, state[1]), action, cost))
+                    successors.append(((nextPosition, state[1]), action, cost))
 
         self._expanded += 1 # DO NOT CHANGE
         return successors
@@ -382,30 +382,30 @@ def cornersHeuristic(state, problem):
         if len(corners) == 0:
             return None
 
-        next_corner = corners[0]
-        min_cost = util.manhattanDistance(position, next_corner)
+        nextCorner = corners[0]
+        minCost = util.manhattanDistance(position, nextCorner)
         for corner in corners[1:]:
             cost = util.manhattanDistance(position, corner)
-            if min_cost > cost:
-                min_cost = cost
-                next_corner = corner
+            if minCost > cost:
+                minCost = cost
+                nextCorner = corner
 
-        return next_corner
+        return nextCorner
 
-    h_sum = 0
+    sum = 0
     pos = state[0]
-    rest_corners = state[1][:]
+    cornersToVisit = state[1][:]
 
     # while there are left corners
-    while len(rest_corners) > 0:
-        next_corner = nextPoint(pos, rest_corners)
-        h_sum += util.manhattanDistance(pos, next_corner)
-        pos = next_corner
+    while len(cornersToVisit) > 0:
+        nextCorner = nextPoint(pos, cornersToVisit)
+        sum += util.manhattanDistance(pos, nextCorner)
+        pos = nextCorner
         # remove next corner from rest_corners 
-        temp = list(rest_corners)
-        temp.remove(next_corner)
-        rest_corners = tuple(temp)
-    return h_sum
+        temp = list(cornersToVisit)
+        temp.remove(nextCorner)
+        cornersToVisit = tuple(temp)
+    return sum
 
 
    # return 0 # Default to trivial solution
