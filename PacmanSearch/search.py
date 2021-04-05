@@ -154,26 +154,50 @@ def breadthFirstSearch(problem):
                            # if problem goal test then return solution
                              #add child to see
      
-    startState = problem.getStartState()
-    visited = set()
-    queue = util.Queue()
-    queue.push((startState, ()))
+    # From First project
+    #startState = problem.getStartState()
+    #visited = set()
+    #queue = util.Queue()
+    #queue.push((startState, ()))
 
-    while not queue.isEmpty():
-        currentNode = queue.pop()
-        currentState = currentNode[0]
-        currentPlan = currentNode[1]
-        if problem.isGoalState(currentState):
-            return list(currentPlan)
-        if not currentState in visited:
-            visited.add(currentState)
-            paths = problem.getSuccessors(currentState)
-            for path in paths:
-                newPlan = list(currentPlan)
-                newPlan.append(path[1])
-                nextNode = (path[0], tuple(newPlan))
-                if not path[0] in visited:
-                    queue.push(nextNode)
+    #while not queue.isEmpty():
+    #    currentNode = queue.pop()
+    #    currentState = currentNode[0]
+    #    currentPlan = currentNode[1]
+    #    if problem.isGoalState(currentState):
+    #        return list(currentPlan)
+    #    if not currentState in visited:
+    #        visited.add(currentState)
+    #        paths = problem.getSuccessors(currentState)
+    #        for path in paths:
+    #            newPlan = list(currentPlan)
+    #            newPlan.append(path[1])
+    #            nextNode = (path[0], tuple(newPlan))
+    #            if not path[0] in visited:
+    #                queue.push(nextNode)
+
+    # 2nd project fixed to make sure corners work
+    if problem.isGoalState(problem.getStartState()):
+        return []
+
+    queue = util.Queue()
+    queue.push((problem.getStartState(),[]))
+    visited = []
+
+    while 1:
+        if queue.isEmpty():
+            return []
+        node,actions = queue.pop()
+        visited.append(node)
+
+        for successor in problem.getSuccessors(node):
+            path = actions + [successor[1]]
+            if ((successor[0] not in visited) and (successor[0] not in [x for x,_ in queue.list])):
+                if problem.isGoalState(successor[0]):
+                    return path
+                queue.push((successor[0],path))
+
+
    
    # util.raiseNotDefined()
 
